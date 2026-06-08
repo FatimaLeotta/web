@@ -445,7 +445,10 @@ image-slot, .media { border-radius: var(--radius-xl); overflow: hidden; display:
 
 @media (max-width: 900px) {
   .section { padding: 80px 0; }
-  .g3, .g2, .split, .split-rev { grid-template-columns: 1fr; gap: 28px; }
+  /* !important is required because several of these grids carry an inline
+     gridTemplateColumns from the JSX, which would otherwise win over a
+     plain stylesheet rule and never collapse on mobile. */
+  .g3, .g2, .split, .split-rev { grid-template-columns: 1fr !important; gap: 28px !important; }
   .srow { grid-template-columns: 50px 1fr; }
   .srow .srow-tag { display: none; }
   .logos-row { grid-template-columns: repeat(2, 1fr) !important; }
@@ -453,4 +456,52 @@ image-slot, .media { border-radius: var(--radius-xl); overflow: hidden; display:
   .recruitment-cta { text-align: center; align-self: stretch; }
 }
 
-@media (max-width: 860px) { .nav-links a:not(.btn) { display: none; } }
+/* ---------- mobile navigation ---------- */
+.nav-toggle { display: none; }
+@media (max-width: 860px) {
+  .nav-desktop { display: none !important; }
+  .nav-toggle {
+    display: inline-flex !important; align-items: center; justify-content: center;
+    width: 44px; height: 44px; margin-right: -10px;
+    color: var(--fg1); border-radius: var(--radius-md);
+  }
+  .nav-toggle:hover { background: var(--color-galaxy-06); }
+}
+@media (min-width: 861px) {
+  .nav-mobile-panel { display: none !important; }
+}
+.nav-mobile-panel {
+  position: absolute; left: 0; right: 0; top: 100%;
+  background: var(--color-pure);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+  display: flex; flex-direction: column;
+  padding: 8px 0 16px;
+  animation: navDrop .26s var(--ease-out);
+}
+.nav-mobile-panel a:not(.btn) {
+  font-family: var(--font-body); font-weight: 500; font-size: 17px;
+  color: var(--fg1); padding: 14px 28px; min-height: 48px;
+  display: flex; align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.nav-mobile-panel a:not(.btn):active { background: var(--bg-light); }
+.nav-mobile-panel .btn { margin: 16px 24px 4px; justify-content: center; }
+@keyframes navDrop { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+/* ---------- small phones ---------- */
+@media (max-width: 560px) {
+  .wrap, .wrap-narrow { padding-left: 20px; padding-right: 20px; }
+  .section { padding: 60px 0; }
+  .section-sm { padding: 48px 0; }
+  .card { padding: 24px; }
+  .layer-card { padding: 22px 22px; }
+  .srow { grid-template-columns: 38px 1fr; gap: 16px; padding: 24px 2px; }
+  .srow-num { font-size: 22px; }
+  .logos-row { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+  .nav-chip { display: none; }
+  /* stacked CTAs go full-width so they're easy to tap */
+  .cta-stack { width: 100%; }
+  .cta-stack .btn { width: 100%; justify-content: center; }
+}
