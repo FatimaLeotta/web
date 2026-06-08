@@ -1,0 +1,28 @@
+FÁTIMA LEOTTA — SITIO WEB (listo para publicar)
+================================================
+
+CONTENIDO DE ESTA CARPETA
+-------------------------
+  index.html     → todo el sitio (Home + las 3 landings: Founders, RRHH y
+                   Profesionales, con navegación interna). Las imágenes,
+                   logos y fuentes YA vienen incrustados dentro del archivo.
+  styles.css     → todos los estilos del sitio.
+  vercel.json    → configuración para Vercel.
+  README.md      → instrucciones para GitHub + Vercel.
+
+NO hay carpeta "assets": todas las fotos están embebidas dentro del
+index.html, así que es imposible que se "pierdan" al subir el repo.
+
+CÓMO PUBLICARLO
+---------------
+Mirá el README.md para los pasos de GitHub + Vercel.
+También se puede arrastrar esta carpeta a https://app.netlify.com/drop
+para una URL instantánea.
+
+IMPORTANTE
+----------
+- Subí el CONTENIDO de la carpeta, con el index.html en la raíz del repo.
+- Los servicios 01 / 02 / 04 llevan a sus landings internas; el 03 abre
+  WhatsApp.
+- Necesita internet la primera vez que carga (usa React y los videos de
+  YouTube embebidos).
